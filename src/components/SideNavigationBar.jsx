@@ -1,102 +1,103 @@
-import Logo from "@/components/Logo";
-import ResueableAccordion from "@/components/ResueableAccordion";
-import { cn } from "@/lib/utils";
-import { NavLink } from "react-router-dom";
-import { AiOutlineSpotify } from "react-icons/ai";
-import { BsTicketDetailed } from "react-icons/bs";
-import { CgGames } from "react-icons/cg";
-import { CiBank, CiBoxList } from "react-icons/ci";
-import { IoIosPeople } from "react-icons/io";
-import { IoHomeOutline, IoSettingsOutline } from "react-icons/io5";
-import { LiaFileInvoiceDollarSolid } from "react-icons/lia";
-import { LuFileSpreadsheet } from "react-icons/lu";
-import { PiVirus } from "react-icons/pi";
+import Logo from '@/components/Logo';
+import ResueableAccordion from '@/components/ResueableAccordion';
+import { cn } from '@/lib/utils';
+import { NavLink } from 'react-router-dom';
+import { AiOutlineSpotify } from 'react-icons/ai';
+import { BsTicketDetailed } from 'react-icons/bs';
+import { CgGames } from 'react-icons/cg';
+import { CiBank, CiBoxList } from 'react-icons/ci';
+import { IoIosPeople } from 'react-icons/io';
+import { IoHomeOutline, IoSettingsOutline } from 'react-icons/io5';
+import { LiaFileInvoiceDollarSolid } from 'react-icons/lia';
+import { LuFileSpreadsheet } from 'react-icons/lu';
+import { PiVirus } from 'react-icons/pi';
 
 const ManageBettersAccordionLinks = {
-  title: "Manage Betters",
+  title: 'Manage Betters',
   items: [
-    { name: "Active Betters", href: "users/active" },
-    { name: "Banned Betters", href: "users/banned" },
-    { name: "With Balance", href: "users/with-balance" },
-    { name: "All Bettors", href: "users/all-bettors" },
-    { name: "Send Notifications", href: "users/send-notifications" },
+    { name: 'Active Betters', href: 'users/active' },
+    { name: 'Banned Betters', href: 'users/banned' },
+    { name: 'With Balance', href: 'users/with-balance' },
+    { name: 'All Bettors', href: 'users/all-bettors' },
+    { name: 'Send Notifications', href: 'users/send-notifications' },
   ],
 };
 
 const SportsConfigAccordionLinks = {
-  title: "Sports Config",
+  title: 'Sports Config',
   items: [
-    { name: "Manage Categories", href: "categories" },
-    { name: "Manage Leagues", href: "leagues" },
-    { name: "Manage Teams", href: "teams" },
+    { name: 'Manage Categories', href: 'categories' },
+    { name: 'Manage Leagues', href: 'leagues' },
+    { name: 'Manage Teams', href: 'teams' },
   ],
 };
 
 const ManageGamesAccordionLinks = {
-  title: "Manage Games",
+  title: 'Manage Games',
   items: [
-    { name: "Running Games", href: "games/running" },
-    { name: "Upcomming Games", href: "games/upcomming" },
-    { name: "Ended Games", href: "games/ended" },
-    { name: "All Games", href: "games/all" },
+    { name: 'Running Games', href: 'games/running' },
+    { name: 'Upcomming Games', href: 'games/upcomming' },
+    { name: 'Ended Games', href: 'games/ended' },
+    { name: 'All Games', href: 'games/all' },
   ],
 };
 const ManageBetsAccordionLinks = {
-  title: "Manage Bets",
+  title: 'Manage Bets',
   items: [
-    { name: "Pending Bets", href: "bet/pending" },
-    { name: "Won Bets", href: "bet/won" },
-    { name: "Lose Bets", href: "bet/lose" },
-    { name: "Refunded Bets", href: "bet/refunded" },
-    { name: "All Bets", href: "bet/all" },
+    { name: 'Ai Bets', href: 'bet/ai' },
+    { name: 'Pending Bets', href: 'bet/pending' },
+    { name: 'Won Bets', href: 'bet/won' },
+    { name: 'Lose Bets', href: 'bet/lose' },
+    { name: 'Refunded Bets', href: 'bet/refunded' },
+    { name: 'All Bets', href: 'bet/all' },
   ],
 };
 
 const DeclareOutcomesAccordionLinks = {
-  title: "Declare Outcomes",
+  title: 'Declare Outcomes',
   items: [
-    { name: "Pending Outcomes", href: "match/market/pending-outcomes" },
-    { name: "Declared Outcomes", href: "match/market/declared-outcomes" },
+    { name: 'Pending Outcomes', href: 'match/market/pending-outcomes' },
+    { name: 'Declared Outcomes', href: 'match/market/declared-outcomes' },
   ],
 };
 
 const DepositsAccordionLinks = {
-  title: "Deposits",
+  title: 'Deposits',
   items: [
-    { name: "Pending Deposits", href: "deposit/pending" },
-    { name: "Approved Deposits", href: "deposit/approved" },
-    { name: "Successful Deposits", href: "deposit/successful" },
-    { name: "Rejected Deposits", href: "deposit/rejected" },
-    { name: "Initiated Deposits", href: "deposit/initiated" },
-    { name: "All Deposits", href: "deposit/all" },
+    { name: 'Pending Deposits', href: 'deposit/pending' },
+    { name: 'Approved Deposits', href: 'deposit/approved' },
+    { name: 'Successful Deposits', href: 'deposit/successful' },
+    { name: 'Rejected Deposits', href: 'deposit/rejected' },
+    { name: 'Initiated Deposits', href: 'deposit/initiated' },
+    { name: 'All Deposits', href: 'deposit/all' },
   ],
 };
 
 const WithdrawlsAccordionLinks = {
-  title: "Withdrawls",
+  title: 'Withdrawls',
   items: [
-    { name: "Pending Withdrawls", href: "withdrawl/pending" },
-    { name: "Approved Withdrwals", href: "withdrawl/approved" },
-    { name: "Rejected Withdrwals", href: "withdrawl/rejected" },
-    { name: "All Withdrwals", href: "withdrawl/all" },
+    { name: 'Pending Withdrawls', href: 'withdrawl/pending' },
+    { name: 'Approved Withdrwals', href: 'withdrawl/approved' },
+    { name: 'Rejected Withdrwals', href: 'withdrawl/rejected' },
+    { name: 'All Withdrwals', href: 'withdrawl/all' },
   ],
 };
 const SupportTicketAccordionLinks = {
-  title: "Support Ticket",
+  title: 'Support Ticket',
   items: [
-    { name: "Pending Ticket", href: "ticket/pending" },
-    { name: "Closed Ticket", href: "ticket/closed" },
-    { name: "Answered Ticket", href: "ticket/answered" },
-    { name: "All Ticket", href: "ticket/all" },
+    { name: 'Pending Ticket', href: 'ticket/pending' },
+    { name: 'Closed Ticket', href: 'ticket/closed' },
+    { name: 'Answered Ticket', href: 'ticket/answered' },
+    { name: 'All Ticket', href: 'ticket/all' },
   ],
 };
 const ReportAccordionLinks = {
-  title: "Report",
+  title: 'Report',
   items: [
-    { name: "Transaction History", href: "report/transaction" },
-    { name: "Login History", href: "report/login/history" },
-    { name: "Notification History", href: "report/notification/history" },
-    { name: "Referral Commisions", href: "report/referal/commission" },
+    { name: 'Transaction History', href: 'report/transaction' },
+    { name: 'Login History', href: 'report/login/history' },
+    { name: 'Notification History', href: 'report/notification/history' },
+    { name: 'Referral Commisions', href: 'report/referal/commission' },
   ],
 };
 
@@ -112,10 +113,10 @@ export default function SideNavigationBar() {
           to="dashboard"
           className={({ isActive }) =>
             cn(
-              "flex w-full items-center gap-3 border-l-4 border-transparent p-3 text-white hover:bg-indigo-600",
+              'flex w-full items-center gap-3 border-l-4 border-transparent p-3 text-white hover:bg-indigo-600',
               {
-                "border-indigo-400 bg-indigo-800": isActive,
-              },
+                'border-indigo-400 bg-indigo-800': isActive,
+              }
             )
           }
         >
@@ -209,10 +210,10 @@ export default function SideNavigationBar() {
             to="system-settings"
             className={({ isActive }) =>
               cn(
-                "flex w-full items-center gap-2 border-l-4 border-transparent p-3 text-white hover:bg-indigo-600",
+                'flex w-full items-center gap-2 border-l-4 border-transparent p-3 text-white hover:bg-indigo-600',
                 {
-                  "border-indigo-400 bg-indigo-800": isActive,
-                },
+                  'border-indigo-400 bg-indigo-800': isActive,
+                }
               )
             }
           >
@@ -223,10 +224,10 @@ export default function SideNavigationBar() {
             to="request-report"
             className={({ isActive }) =>
               cn(
-                "flex w-full items-center gap-2 border-l-4 border-transparent p-3 text-white hover:bg-indigo-600",
+                'flex w-full items-center gap-2 border-l-4 border-transparent p-3 text-white hover:bg-indigo-600',
                 {
-                  "border-indigo-400 bg-indigo-800": isActive,
-                },
+                  'border-indigo-400 bg-indigo-800': isActive,
+                }
               )
             }
           >

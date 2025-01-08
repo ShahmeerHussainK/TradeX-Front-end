@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { cn, splitIntoChunks } from '@/lib/utils';
 import {
   Table,
@@ -8,7 +8,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
+} from './ui/table';
 import {
   Pagination,
   PaginationContent,
@@ -17,13 +17,12 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from '@/components/ui/pagination';
-import { outcomeHeaders } from '@/lib/data';
-import { DateTime } from 'luxon';
+} from './ui/pagination';
 
-export default function PendingOutcomesTableContainer({ data, rowsPerPage }) {
+function BetsTableContainer({ data, rowsPerPage }) {
   const [pageNo, setPageNo] = useState(1);
   const [searchParams, setSearchParams] = useSearchParams();
+  const Navigate = useNavigate();
 
   useEffect(() => {
     const currentPage = parseInt(searchParams.get('page'), 10) || 1;
@@ -87,12 +86,10 @@ export default function PendingOutcomesTableContainer({ data, rowsPerPage }) {
       <Table className="cursor-pointer">
         <TableHeader className="h-16">
           <TableRow className="text-nowrap bg-indigo-600 hover:bg-indigo-500">
-            {outcomeHeaders.map((header, index) => (
+            {data?.tableHeader?.map((header, index) => (
               <TableHead
                 key={index}
-                className={cn('h-14 pl-4 font-semibold text-white', {
-                  'text-center': index !== 0,
-                })}
+                className="h-14 pl-4 font-semibold text-white"
               >
                 {header}
               </TableHead>
@@ -105,39 +102,39 @@ export default function PendingOutcomesTableContainer({ data, rowsPerPage }) {
               key={index}
               className="h-16 text-nowrap border-b last:border-b-0"
             >
-              <TableCell className="pl-4 font-medium">
-                <p className="font-semibold text-gray-500">{row.question}</p>
+              <TableCell className="flex flex-col justify-center gap-2 pl-4 font-medium">
+                <p className="font-semibold text-gray-500">{row.betNumber}</p>
+                <p className="text-indigo-500">{row.user}</p>
               </TableCell>
-              <TableCell className="font-medium">
-                <div className="flex items-center justify-center gap-5">
-                  <div className="flex flex-col items-center">
-                    <p>{row.team1}</p>
-                  </div>
-                  <p className="text-lg font-bold">VS</p>
-                  <div className="flex flex-col items-center">
-                    <p>{row.team2}</p>
-                  </div>
-                </div>
-              </TableCell>
-
-              <TableCell className="space-y-2 text-center">
-                <p className="font-semibold text-gray-600">
-                  {DateTime.fromISO(
-                    new Date(row.bet_end_time).toISOString()
-                  ).toLocaleString(DateTime.DATETIME_MED)}
-                </p>
-              </TableCell>
-              <TableCell className="text-center">{row.total_bets}</TableCell>
-              <TableCell className="text-center">
+              <TableCell>
                 <span
                   className={cn(
                     'text-xsm rounded-full px-3 py-[0.5px]',
-                    !row.resolved
-                      ? 'border border-yellow-600 bg-yellow-100 text-yellow-800'
+                    row.type.toLowerCase() === 'multi'
+                      ? 'border border-violet-600 bg-violet-100 text-violet-800'
                       : 'border border-teal-700 bg-teal-100 text-teal-800'
                   )}
                 >
-                  {!row.resolved ? 'Pending...' : 'Resolved'}
+                  {row.type}
+                </span>
+              </TableCell>
+              <TableCell className="font-bold text-gray-600">
+                {row.stakeAmount}
+              </TableCell>
+              <TableCell>{row.return}</TableCell>
+              <TableCell className="font-bold text-gray-600">
+                <span
+                  className={cn('text-xsm rounded-full px-3 py-[0.5px]', {
+                    'border border-orange-600 bg-orange-100 text-orange-800':
+                      row.status.toLowerCase() === 'pending',
+                  })}
+                >
+                  {row.status}
+                </span>
+              </TableCell>
+              <TableCell className="font-semibold text-gray-600">
+                <span className="rounded-sm border border-indigo-500 px-3 py-1 text-indigo-500 hover:bg-indigo-500 hover:text-white">
+                  {row.action}
                 </span>
               </TableCell>
             </TableRow>
@@ -202,3 +199,5 @@ export default function PendingOutcomesTableContainer({ data, rowsPerPage }) {
     </div>
   );
 }
+
+export default BetsTableContainer;

@@ -31,3 +31,13 @@ export const getSharePrice = async (payload) => {
   );
   return result.data;
 };
+
+export const getAiBets = async () => {
+  const result = await axiosInstance.get(`/api/ai-bets`);
+  return result.data;
+};
+
+export const getOutcomes = async () => {
+  const result = await axiosInstance.get('/events/results');
+  return result.data;
+};

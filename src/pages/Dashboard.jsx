@@ -28,7 +28,7 @@ export default function Dashboard() {
   };
 
   const handleCron = async () => {
-    const result = await axiosInstance.post('/api/scrape_and_store_matches');
+    const result = await axiosInstance.get('/api/scrape_and_store_matches');
     return result.data;
   };
 

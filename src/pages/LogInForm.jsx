@@ -1,19 +1,19 @@
-import toast from "react-hot-toast";
-import { useState } from "react";
-import {  Navigate } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { useAuth } from "@/contexts/AuthContext";
+import toast from 'react-hot-toast';
+import { useState } from 'react';
+import { Navigate } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
+import { useAuth } from '@/contexts/AuthContext';
 import {
   doSignInWithEmailAndPassword,
   doSignInWithGoogle,
   login,
-} from "@/firebase/auth";
+} from '@/firebase/auth';
 
 function LoginForm() {
-  const { loading,userLoggedIn } = useAuth();
+  const { loading, userLoggedIn } = useAuth();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [isSigningIn, setIsSigningIn] = useState(false);
 
   const onSubmit = async (e) => {
@@ -21,14 +21,13 @@ function LoginForm() {
 
     if (!isSigningIn) {
       setIsSigningIn(true);
-      try{
-        const data =await doSignInWithEmailAndPassword(email, password)
-        await login(data.user.accessToken)
-      }
-      catch(err) {
+      try {
+        const data = await doSignInWithEmailAndPassword(email, password);
+        await login(data.user.accessToken);
+      } catch (err) {
         toast.error(err.message);
         setIsSigningIn(false);
-      };
+      }
     }
   };
 
@@ -37,17 +36,19 @@ function LoginForm() {
 
     if (!isSigningIn) {
       setIsSigningIn(true);
-      doSignInWithGoogle().then(()=>login()).catch((err) => {
-        toast.error(err.message);
-        setIsSigningIn(false);
-      });
+      doSignInWithGoogle()
+        .then(() => login())
+        .catch((err) => {
+          toast.error(err.message);
+          setIsSigningIn(false);
+        });
     }
   };
 
   return (
     <div className="flex items-center justify-center bg-gray-800 p-8 sm:p-0">
       <div className="w-full max-w-md rounded-lg bg-gray-100 p-8 shadow-lg">
-        <h2 className="mb-6 text-center text-2xl font-bold">Sign Up</h2>
+        <h2 className="mb-6 text-center text-2xl font-bold">Log In</h2>
 
         <form onSubmit={onSubmit}>
           <div className="mb-4">
@@ -103,7 +104,7 @@ function LoginForm() {
             Continue with Google
           </Button>
         </div>
-        {userLoggedIn && <Navigate to={"/home"} replace={true} />}
+        {userLoggedIn && <Navigate to={'/home'} replace={true} />}
       </div>
     </div>
   );
