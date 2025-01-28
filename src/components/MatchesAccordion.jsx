@@ -4,40 +4,38 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from '@/components/ui/accordion';
-import MatchEventsAccordionTable from './MatchEventsAccordionTable';
-import { useCallback, useEffect, useState } from 'react';
-import { getEventsByMatchId } from '@/api/matches';
+import MatchesAccordionTable from './MatchesAccordionTable';
+import { useEffect, useState } from 'react';
+import { getMatches } from '@/api/matches';
 import toast from 'react-hot-toast';
-import { useParams } from 'react-router-dom';
 
-const EventsAccordion = () => {
-  const { matchId } = useParams();
-  const [events, setEvents] = useState(null);
+const MatchesAccordion = () => {
+  const [matches, setMatches] = useState(null);
 
-  const handleGetMatchEvents = useCallback(async () => {
+  const handleGetMatches = async () => {
     try {
-      const data = await getEventsByMatchId(matchId);
+      const data = await getMatches('basketball');
 
       if (Object.keys(data).length) {
-        setEvents(data);
+        setMatches(data);
       }
     } catch (err) {
       toast.error('error occured', err);
     }
-  }, [matchId]);
+  };
 
   useEffect(() => {
-    handleGetMatchEvents();
-  }, [handleGetMatchEvents]);
+    handleGetMatches();
+  }, []);
 
-  if (events)
+  if (matches)
     return (
       <Accordion
         type="single"
         collapsible
-        defaultValue={Object.keys(events)[0]}
+        defaultValue={Object.keys(matches)[0]}
       >
-        {Object.entries(events).map(([league, data], index) => (
+        {Object.entries(matches).map(([league, data], index) => (
           <AccordionItem value={league} key={index}>
             <AccordionTrigger
               className="flex w-full justify-between bg-sky-600 p-3 text-white hover:bg-sky-700"
@@ -48,7 +46,7 @@ const EventsAccordion = () => {
               </div>
             </AccordionTrigger>
             <AccordionContent className="p-0">
-              <MatchEventsAccordionTable data={data} />
+              <MatchesAccordionTable data={data} />
             </AccordionContent>
           </AccordionItem>
         ))}
@@ -57,4 +55,4 @@ const EventsAccordion = () => {
   return <div className="w-full" />;
 };
 
-export default EventsAccordion;
+export default MatchesAccordion;

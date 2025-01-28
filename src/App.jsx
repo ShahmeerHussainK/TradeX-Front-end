@@ -67,6 +67,7 @@ import {
 } from 'react-router-dom';
 import LoginForm from './pages/LogInForm';
 import AiBets from './components/AiBets';
+import Events from './pages/Events';
 
 const router = createBrowserRouter([
   {
@@ -80,6 +81,10 @@ const router = createBrowserRouter([
       {
         path: 'home',
         element: <Home />,
+      },
+      {
+        path: 'events/:matchId',
+        element: <Events />,
       },
       {
         path: 'event/:id',

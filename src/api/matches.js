@@ -1,17 +1,22 @@
 import axiosInstance from './axios';
 
-export const getMatches = async () => {
+export const getAdminMatches = async () => {
   const result = await axiosInstance.get('/matches');
   return result.data;
 };
 
-export const getEvents = async () => {
-  const result = await axiosInstance.get('/events');
+export const getMatches = async (type) => {
+  const result = await axiosInstance.get(`/matches/${type}`);
   return result.data;
 };
 
 export const getEventDetail = async (id) => {
   const result = await axiosInstance.get(`/event/${id}`);
+  return result.data;
+};
+
+export const getEventsByMatchId = async (id) => {
+  const result = await axiosInstance.get(`/events/${id}`);
   return result.data;
 };
 
